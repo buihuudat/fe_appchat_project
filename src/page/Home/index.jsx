@@ -11,7 +11,7 @@ const Home = () => {
   const user = useSelector((state) => state.user.data);
   const chat = useSelector((state) => state.handler.n1);
 
-  const host = "http://localhost:5000";
+  const host = "https://appchat-buihuudat.vercel.app";
   const socket = useRef();
 
   useEffect(() => {
