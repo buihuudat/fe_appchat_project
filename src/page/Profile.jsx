@@ -1,7 +1,6 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { setProfile } from "../redux/reducers/handlerReducer";
@@ -9,6 +8,7 @@ import { Avatar, TextField } from "@mui/material";
 import { useState } from "react";
 import FileBase64 from "react-file-base64";
 import userApi from "../api/userApi";
+import { setDeleteAccount } from "../redux/reducers/modalReduccer";
 
 const style = {
   position: "absolute",
@@ -47,7 +47,7 @@ export default function Profile() {
       username: user.username,
       fullname: formData.get("fullname") || user.fullname,
       password: formData.get("password") || user.password,
-      confirmPassword: formData.get("confirmPassword") || user.confirmPassword,
+      confirmPassword: formData.get("confirmPassword"),
     };
 
     if (data.fullname === "") {
@@ -59,7 +59,7 @@ export default function Profile() {
       alert("password must be at 8 characters");
       return;
     }
-    if (data.password !== data.confirmPassword) {
+    if (!GGL && data.password !== data.confirmPassword) {
       alert("password not match");
       return;
     }
@@ -138,25 +138,36 @@ export default function Profile() {
               )}
             </Box>
           )}
-          {disabled && (
-            <Button onClick={() => setDisabled(false)} variant="outlined">
-              Edit
-            </Button>
-          )}
+          <Box display={"flex"} flexDirection={"column"} gap={2}>
+            {disabled && (
+              <Button onClick={() => setDisabled(false)} variant="outlined">
+                Edit
+              </Button>
+            )}
 
-          {!disabled && (
-            <Button type="submit" variant="outlined">
-              Update
-            </Button>
-          )}
+            {!disabled && (
+              <Button type="submit" variant="outlined">
+                Update
+              </Button>
+            )}
 
-          <Button
-            onClick={() => setDisabled(true)}
-            variant="outlined"
-            color="warning"
-          >
-            Cancel
-          </Button>
+            <Button
+              onClick={() => setDisabled(true)}
+              variant="outlined"
+              color="warning"
+            >
+              Cancel
+            </Button>
+            <Button
+              onClick={() =>
+                dispatch(setDeleteAccount({ deleteAccount: true }))
+              }
+              variant="outlined"
+              color="error"
+            >
+              Delete account
+            </Button>
+          </Box>
         </Box>
       </Modal>
     </div>

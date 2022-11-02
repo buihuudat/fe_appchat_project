@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import Loading from "../common/Loading";
 import authUtils from "../../utils/authUtils";
-import { useSelector } from "react-redux";
 
 const AuthLayout = () => {
   const [loading, setLoading] = useState(true);

@@ -1,13 +1,12 @@
-import { Box, Button, Divider, IconButton, TextField } from "@mui/material";
+import { Box, Divider, IconButton, TextField } from "@mui/material";
 import React, { useState } from "react";
-import AttachFileIcon from "@mui/icons-material/AttachFile";
 import SendIcon from "@mui/icons-material/Send";
 import messageApi from "../../api/messageApi";
 import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
 import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
 import FileBase64 from "react-file-base64";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setMessage } from "../../redux/reducers/messageReduce";
 
 const FormChat = ({ props, socket }) => {

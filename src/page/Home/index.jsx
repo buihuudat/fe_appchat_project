@@ -1,7 +1,8 @@
 import { Box, Toolbar } from "@mui/material";
 import React, { useEffect, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import AddChat from "../../components/common/Modals/AddChat";
+import DeleteAccount from "../../components/common/Modals/DeleteAccount";
 import BoxChat from "./BoxChat";
 import FormChat from "./FormChat";
 import { io } from "socket.io-client";
@@ -44,6 +45,7 @@ const Home = () => {
       </Box>
       <AddChat />
       <Profile />
+      <DeleteAccount />
     </Box>
   );
 };

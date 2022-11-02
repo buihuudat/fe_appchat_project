@@ -91,14 +91,15 @@ export default function Tabbar() {
             label={<Chip sx={{ cursor: "pointer" }} label="All" />}
             {...a11yProps(0)}
           />
-          <Tab
+          // coming soon
+          {/* <Tab
             label={<Chip sx={{ cursor: "pointer" }} label="DMs" />}
             {...a11yProps(1)}
           />
           <Tab
             label={<Chip sx={{ cursor: "pointer" }} label="Group" />}
             {...a11yProps(2)}
-          />
+          /> */}
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import authUtils from "../../utils/authUtils";
 import { useNavigate, Outlet } from "react-router-dom";
 import Loading from "../common/Loading";

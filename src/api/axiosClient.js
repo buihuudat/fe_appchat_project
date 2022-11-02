@@ -1,32 +1,36 @@
-import axios from 'axios'
-import queryString from 'query-string'
+import axios from "axios";
+import queryString from "query-string";
 
-const baseUrl = "https://appchat-buihuudat.herokuapp.com/api/v1/"
-const getToken = () => localStorage.getItem('token')
+const baseUrl = "https://appchat-buihuudat.herokuapp.com/api/v1/";
+// const baseUrl = "http://localhost:5000/api/v1/";
+const getToken = () => localStorage.getItem("token");
 
 const axiosClient = axios.create({
   baseURL: baseUrl,
-  paramsSerializer: params => queryString.stringify({ params })
-})
+  paramsSerializer: (params) => queryString.stringify({ params }),
+});
 
-axiosClient.interceptors.request.use(async config => {
+axiosClient.interceptors.request.use(async (config) => {
   return {
     ...config,
     headers: {
-      'Content-Type': 'application/json',
-      'authorization': `Barer ${getToken()}`
+      "Content-Type": "application/json",
+      authorization: `Barer ${getToken()}`,
+    },
+  };
+});
+
+axiosClient.interceptors.response.use(
+  (response) => {
+    if (response && response.data) return response.data;
+    return response;
+  },
+  (err) => {
+    if (!err.response) {
+      return alert(err);
     }
+    throw err.response;
   }
-})
+);
 
-axiosClient.interceptors.response.use(response => {
-  if (response && response.data) return response.data
-  return response
-}, err => {
-  if (!err.response) {
-    return alert(err)
-  }
-  throw err.response
-})
-
-export default axiosClient
+export default axiosClient;
