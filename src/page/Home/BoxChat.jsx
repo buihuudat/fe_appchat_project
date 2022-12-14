@@ -9,6 +9,7 @@ const BoxChat = ({ props, socket }) => {
   const messages = useSelector((state) => state.message.data);
   const scrollRef = useRef();
   const dispatch = useDispatch();
+  console.log(messages);
 
   useEffect(() => {
     if (socket.current) {
@@ -27,11 +28,12 @@ const BoxChat = ({ props, socket }) => {
   }, [messages]);
 
   const CheckFile = ({ mess }) => {
-    const type = mess.split("/")[0];
-    if (type === "data:image") {
+    const type = mess.split("|")[0];
+    const img = mess.split("|")[1];
+    if (type === "image") {
       return (
         <img
-          src={mess}
+          src={img}
           alt="image"
           style={{
             height: 50,

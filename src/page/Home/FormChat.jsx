@@ -8,6 +8,7 @@ import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
 import FileBase64 from "react-file-base64";
 import { useDispatch } from "react-redux";
 import { setMessage } from "../../redux/reducers/messageReduce";
+import imageUpload from "../../handler/ImageUpload";
 
 const FormChat = ({ props, socket }) => {
   const [hidden, setHidden] = useState(true);
@@ -17,10 +18,11 @@ const FormChat = ({ props, socket }) => {
 
   const dispatch = useDispatch();
 
-  const handleSetFile = (e) => {
+  const handleSetFile = async (e) => {
     const type = e.type.split("/")[0];
     if (type === "image") {
-      setImage(e.base64);
+      const img = await imageUpload(e.base64);
+      setImage(`image|${img.data.url}`);
     } else {
       setFile(e.base64);
     }
